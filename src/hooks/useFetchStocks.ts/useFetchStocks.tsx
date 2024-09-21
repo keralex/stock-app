@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-interface StockData {
+export interface StockData {
     symbol: string;
     name: string;
     currency: string;
@@ -11,7 +11,7 @@ interface StockData {
     figi_code: string;
 }
 
-export const useFetchStocks = (symbol: string) => {
+export const useFetchStocks = () => {
     const [data, setData] = useState<StockData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -19,10 +19,9 @@ export const useFetchStocks = (symbol: string) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://api.twelvedata.com/stocks?symbol=${symbol}&source=docs`);
+                const response = await fetch('https://api.twelvedata.com/stocks');
                 const result = await response.json();
 
-                // Verificamos si result.data es un array de objetos
                 if (result.data && Array.isArray(result.data)) {
                     setData(result.data);
                 } else {
@@ -37,7 +36,7 @@ export const useFetchStocks = (symbol: string) => {
         };
 
         fetchData();
-    }, [symbol]);
+    }, []);
 
     return { data, loading, error };
 };
