@@ -4,7 +4,7 @@ import PageLayout from "../../templates/PageLayout"
 const DashBoard = () => {
     return (
         <PageLayout>
-            <h1>Dashboard</h1>
+            <h1>Stock Table</h1>
             <StockTable />
         </PageLayout>
     )
