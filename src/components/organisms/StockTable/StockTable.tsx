@@ -7,7 +7,7 @@ import { StockData, useFetchStocks } from "../../../hooks/useFetchStocks.ts/useF
 
 
 
-const DataTable: React.FC = () => {
+const StockTable: React.FC = () => {
     const { data, loading, error } = useFetchStocks();
 
     if (loading) {
@@ -36,4 +36,4 @@ const DataTable: React.FC = () => {
     )
 }
 
-export default DataTable;
+export default StockTable;
