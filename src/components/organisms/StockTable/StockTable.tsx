@@ -2,16 +2,30 @@ import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 import { columnsDefinition } from "./columnsDefinition";
-import { StockData, useFetchStocks } from "../../../hooks/useFetchStocks.ts/useFetchStocks";
+import { StockData } from "../../../hooks/useFetchStocks.ts/useFetchStocks";
 
 
+const generateRandom = () => Math.random().toString(36).substring(7);
+
+interface StockTableProps {
+    data: StockData[];
+    isLoading: boolean;
+    error: string | null;
+    searchQuery: string;
+}
+
+const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQuery }) => {
 
 
-const StockTable: React.FC = () => {
-    const { data, loading, error } = useFetchStocks();
-
-    if (loading) {
-        return <p>Loading...</p>;
+    const getData = (): StockData[] => {
+        if (searchQuery) {
+            return data
+                ? data.filter((row) =>
+                    row.name.toLowerCase().includes(searchQuery.toLowerCase()) || row.symbol.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                : []
+        }
+        return data;
     }
 
     if (error) {
@@ -22,8 +36,9 @@ const StockTable: React.FC = () => {
         <Box>
             <DataGrid
                 columns={columnsDefinition}
-                rows={data}
-                getRowId={(row: StockData) => row.figi_code}
+                rows={getData()}
+                //hay data duplicada en la api
+                getRowId={(row: StockData) => row.figi_code + generateRandom()}
                 initialState={{
                     pagination: {
                         paginationModel: {
@@ -31,6 +46,7 @@ const StockTable: React.FC = () => {
                         },
                     },
                 }}
+                loading={isLoading}
                 pageSizeOptions={[5, 10, 20]} />
         </Box>
     )

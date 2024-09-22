@@ -1,17 +1,33 @@
-import React from 'react';
-import { Box, TextField } from '@mui/material';
+import React, { useState } from 'react';
 
-type SearchBarProps = {
-    value: string;
+interface SearchBarProps {
+    onSearch: (query: string) => void;
     placeholder: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, placeholder, onChange }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
+    const [query, setQuery] = useState('');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+    };
+
+    const handleSearchClick = () => {
+        if (query.trim()) {
+            onSearch(query.trim());
+        }
+    };
+
     return (
-        <Box display="flex" mb={4}>
-            <TextField value={value} onChange={onChange} placeholder={placeholder} />
-        </Box>
+        <div>
+            <input
+                type="text"
+                value={query}
+                onChange={handleInputChange}
+                placeholder={placeholder}
+            />
+            <button onClick={handleSearchClick}>Search</button>
+        </div>
     );
 };
 

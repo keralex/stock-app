@@ -19,7 +19,7 @@ export const useFetchStocks = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://api.twelvedata.com/stocks');
+                const response = await fetch(`https://api.twelvedata.com/stocks?source=docs&exchange=NYSE`);
                 const result = await response.json();
 
                 if (result.data && Array.isArray(result.data)) {
@@ -27,10 +27,11 @@ export const useFetchStocks = () => {
                 } else {
                     setError('No data found');
                 }
-                setLoading(false);
             } catch (err) {
                 console.error(err);
                 setError('Error fetching data');
+                setLoading(false);
+            } finally {
                 setLoading(false);
             }
         };
