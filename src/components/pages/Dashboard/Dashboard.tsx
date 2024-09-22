@@ -4,7 +4,7 @@ import StockTable from "../../organisms/StockTable/StockTable";
 import PageLayout from "../../templates/PageLayout"
 import { useFetchStocks } from "../../../hooks/useFetchStocks.ts/useFetchStocks";
 
-const DashBoard = () => {
+const DashBoard: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { data, loading, error } = useFetchStocks();
 
