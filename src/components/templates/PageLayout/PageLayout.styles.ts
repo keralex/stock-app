@@ -5,7 +5,7 @@ const getContainerStyles = (): SxProps<Theme> => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem 3rem',
+        padding: '3rem 3rem',
         margin: '0 auto',
         width: '100%',
         boxSizing: 'border-box',
@@ -18,6 +18,8 @@ const getBoxStyles = (): SxProps<Theme> => {
     return {
         backgroundColor: 'white',
         borderRadius: '8px',
+        width: '100%',
+        height: '100%',
     };
 };
 

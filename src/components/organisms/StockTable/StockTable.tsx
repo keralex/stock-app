@@ -37,7 +37,6 @@ const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQ
             <DataGrid
                 columns={columnsDefinition}
                 rows={getData()}
-                //hay data duplicada en la api
                 getRowId={(row: StockData) => row.figi_code + generateRandom()}
                 initialState={{
                     pagination: {
@@ -47,7 +46,10 @@ const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQ
                     },
                 }}
                 loading={isLoading}
-                pageSizeOptions={[5, 10, 20]} />
+                pageSizeOptions={[5, 10, 20]}
+                disableColumnMenu
+            />
+
         </Box>
     )
 }
