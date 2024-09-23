@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchBar from "../../molecules/SearchBar/SearchBar";
 import StockTable from "../../organisms/StockTable/StockTable";
 import PageLayout from "../../templates/PageLayout"
-import { useFetchStocks } from "../../../hooks/useFetchStocks.ts/useFetchStocks";
+import { useFetchStocks } from "../../../hooks/useFetchStocks";
 
 const DashBoard: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');

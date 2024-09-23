@@ -1,10 +1,11 @@
 import React from "react";
+import PageLayout from "../../templates/PageLayout";
 
 const StockDetail: React.FC = () => {
     return (
-        <div>
+        <PageLayout>
             <h1>Stock Detail</h1>
-        </div>
+        </PageLayout>
     )
 };
 

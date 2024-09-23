@@ -2,7 +2,7 @@ import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 import { columnsDefinition } from "./columnsDefinition";
-import { StockData } from "../../../hooks/useFetchStocks.ts/useFetchStocks";
+import { StockData } from "../../../hooks/useFetchStocks";
 
 
 const generateRandom = () => Math.random().toString(36).substring(7);
