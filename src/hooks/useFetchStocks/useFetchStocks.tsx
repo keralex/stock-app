@@ -1,18 +1,9 @@
 import { useState, useEffect } from 'react';
+import { StockListItem } from '../../types/StocksTypes';
 
-export interface StockData {
-    symbol: string;
-    name: string;
-    currency: string;
-    exchange: string;
-    mic_code: string;
-    country: string;
-    type: string;
-    figi_code: string;
-}
 
-export const useFetchStocks = () => {
-    const [data, setData] = useState<StockData[]>([]);
+const useFetchStocks = () => {
+    const [data, setData] = useState<StockListItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -41,3 +32,5 @@ export const useFetchStocks = () => {
 
     return { data, loading, error };
 };
+
+export default useFetchStocks;

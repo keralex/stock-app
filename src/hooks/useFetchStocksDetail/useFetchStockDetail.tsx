@@ -1,37 +1,15 @@
 import { useEffect, useState } from "react";
+import { StockDetail } from "../../types/StocksTypes";
 
-export interface FetchStockDetailParams {
-    symbol: string;
+
+interface FetchStockDetailParams {
+    symbol: string | undefined;
     interval: string;
     start_date?: string;
     end_date?: string;
 }
 
-type Meta = {
-    symbol: string;
-    interval: string;
-    currency: string;
-    exchange_timezone: string;
-    exchange: string;
-    mic_code: string;
-    type: string;
-}
-
-type Value = {
-    datetime: string;
-    open: string;
-    high: string;
-    low: string;
-    close: string;
-    volume: string;
-}
-
-export interface StockDetail {
-    meta: Meta;
-    values: Value[];
-}
-
-export const useFetchStockDetail = ({ symbol, interval, end_date, start_date }: FetchStockDetailParams) => {
+const useFetchStockDetail = ({ symbol, interval, end_date, start_date }: FetchStockDetailParams) => {
 
     const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -72,3 +50,4 @@ export const useFetchStockDetail = ({ symbol, interval, end_date, start_date }: 
     return { data, loading, error };
 }
 
+export default useFetchStockDetail;

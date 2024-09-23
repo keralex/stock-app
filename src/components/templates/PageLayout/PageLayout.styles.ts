@@ -20,6 +20,7 @@ const getBoxStyles = (): SxProps<Theme> => {
         borderRadius: '8px',
         width: '100%',
         height: '100%',
+        boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.1)',
     };
 };
 

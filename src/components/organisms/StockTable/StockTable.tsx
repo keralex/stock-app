@@ -2,13 +2,13 @@ import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 import { columnsDefinition } from "./columnsDefinition";
-import { StockData } from "../../../hooks/useFetchStocks";
+import { StockListItem } from "../../../types/StocksTypes";
 
 
 const generateRandom = () => Math.random().toString(36).substring(7);
 
 interface StockTableProps {
-    data: StockData[];
+    data: StockListItem[];
     isLoading: boolean;
     error: string | null;
     searchQuery: string;
@@ -17,7 +17,7 @@ interface StockTableProps {
 const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQuery }) => {
 
 
-    const getData = (): StockData[] => {
+    const getData = (): StockListItem[] => {
         if (searchQuery) {
             return data
                 ? data.filter((row) =>
@@ -37,7 +37,7 @@ const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQ
             <DataGrid
                 columns={columnsDefinition}
                 rows={getData()}
-                getRowId={(row: StockData) => row.figi_code + generateRandom()}
+                getRowId={(row: StockListItem) => row.figi_code + generateRandom()}
                 initialState={{
                     pagination: {
                         paginationModel: {
