@@ -6,7 +6,7 @@ import useFetchStocks from "../../../hooks/useFetchStocks/useFetchStocks";
 
 const DashBoard: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const { data, loading, error } = useFetchStocks();
+    const { data, isLoading, error } = useFetchStocks();
 
     const handleSearch = (query: string) => {
         setSearchQuery(query);
@@ -16,7 +16,7 @@ const DashBoard: React.FC = () => {
         <PageLayout>
             <h1>Stock Table</h1>
             <SearchBar onSearch={handleSearch} placeholder="Search by name or symbol" />
-            <StockTable data={data} isLoading={loading} error={error} searchQuery={searchQuery} />
+            <StockTable data={data || []} isLoading={isLoading} error={error?.message} searchQuery={searchQuery} />
         </PageLayout>
     )
 }

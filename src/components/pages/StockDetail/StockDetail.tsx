@@ -17,11 +17,11 @@ const StockDetail: React.FC = () => {
     const params = useParams()
     const symbol = params.symbol;
 
-    const [startDate, setStartDate] = useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
-    const [endDate, setEndDate] = useState<Dayjs | null>(dayjs('2022-04-17T15:30'));
+    const [startDate, setStartDate] = useState<Dayjs | null>(dayjs());
+    const [endDate, setEndDate] = useState<Dayjs | null>(null);
     const [interval, setInterval] = useState<string>('1min');
     const [realTime, setRealTime] = useState<boolean>(false);
-    const { data, loading, error } = useFetchStockDetail({ symbol, interval, start_date: startDate?.format(dateFormat), end_date: endDate?.format(dateFormat) });
+    const { data, isLoading, error } = useFetchStockDetail({ symbol, interval, start_date: startDate?.format(dateFormat), end_date: endDate?.format(dateFormat) });
 
     return (
         <PageLayout>
@@ -40,7 +40,7 @@ const StockDetail: React.FC = () => {
                         views={['year', 'month', 'day', 'hours', 'minutes', 'seconds']}
                     />
                     <DateTimePicker
-                        label="Start Date"
+                        label="End Date"
                         value={endDate}
                         onChange={(newValue: Dayjs | null) => setEndDate(newValue)}
                         views={['year', 'month', 'day', 'hours', 'minutes', 'seconds']}

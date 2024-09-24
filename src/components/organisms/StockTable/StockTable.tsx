@@ -10,7 +10,7 @@ const generateRandom = () => Math.random().toString(36).substring(7);
 interface StockTableProps {
     data: StockListItem[];
     isLoading: boolean;
-    error: string | null;
+    error?: string;
     searchQuery: string;
 }
 
