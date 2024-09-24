@@ -21,7 +21,7 @@ const StockDetail: React.FC = () => {
     const [endDate, setEndDate] = useState<Dayjs | null>(null);
     const [interval, setInterval] = useState<string>('1min');
     const [realTime, setRealTime] = useState<boolean>(false);
-    const { data, isLoading, error } = useFetchStockDetail({ symbol, interval, start_date: startDate?.format(dateFormat), end_date: endDate?.format(dateFormat) });
+    const { data, isLoading, error } = useFetchStockDetail({ symbol, interval, start_date: startDate?.format(dateFormat), end_date: endDate?.format(dateFormat), realTime });
 
     return (
         <PageLayout>

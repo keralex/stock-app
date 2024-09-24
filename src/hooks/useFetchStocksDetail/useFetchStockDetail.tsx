@@ -7,6 +7,7 @@ interface FetchStockDetailParams {
     interval: string;
     start_date?: string;
     end_date?: string;
+    realTime?: boolean;
 }
 
 const fetchStockDetail = async ({ symbol, interval, start_date, end_date }: FetchStockDetailParams): Promise<StockDetail> => {
@@ -44,7 +45,7 @@ const getIntervalMs = (interval: string) => {
 
 const useFetchStockDetail = (params: FetchStockDetailParams) => {
     return useQuery<StockDetail, Error>({
-        queryKey: ['stockDetail', params], queryFn: () => fetchStockDetail(params), refetchInterval: getIntervalMs(params.interval)
+        queryKey: ['stockDetail', params], queryFn: () => fetchStockDetail(params), refetchInterval: params.realTime ? getIntervalMs(params.interval) : false
     });
 
 }
