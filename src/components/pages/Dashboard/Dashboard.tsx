@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SearchBar from '../../molecules/SearchBar/SearchBar';
-import StockTable from '../../organisms/StockTable/StockTable';
+import SearchBar from '../../molecules/SearchBar';
+import StockTable from '../../organisms/StockTable';
 import PageLayout from '../../templates/PageLayout';
 import useFetchStocks from '../../../hooks/useFetchStocks/useFetchStocks';
 import { Box, CircularProgress, Typography } from '@mui/material';

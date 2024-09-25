@@ -39,7 +39,7 @@ const StockDetail: React.FC = () => {
 		end_date: endDate?.format(dateFormat),
 		realTime,
 	});
-	console.log(error);
+
 	if (error) {
 		return <ErrorPage />;
 	}

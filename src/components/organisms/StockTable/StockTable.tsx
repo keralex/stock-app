@@ -16,10 +16,10 @@ const StockTable: React.FC<StockTableProps> = ({ data, isLoading, error, searchQ
 		if (searchQuery) {
 			return data
 				? data.filter(
-						(row) =>
-							row.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-							row.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
-				  )
+					(row) =>
+						row.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+						row.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
+				)
 				: [];
 		}
 		return data;
