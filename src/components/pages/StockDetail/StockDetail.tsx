@@ -53,7 +53,13 @@ const StockDetail: React.FC = () => {
 				<FormControl>
 					<FormControlLabel
 						control={
-							<Checkbox onChange={(event) => setRealTime(event.target.checked)} checked={realTime} />
+							<Checkbox
+								onChange={(event) => {
+									setStartDate(dayjs())
+									setEndDate(null)
+									setRealTime(event.target.checked)
+								}}
+								checked={realTime} />
 						}
 						label='Do you want the chart to update in real time?'
 					/>
@@ -65,12 +71,14 @@ const StockDetail: React.FC = () => {
 						onChange={(newValue: Dayjs | null) => setStartDate(newValue)}
 						views={['year', 'month', 'day', 'hours', 'minutes', 'seconds']}
 						sx={{ mr: '1rem' }}
+						disabled={realTime}
 					/>
 					<DateTimePicker
 						label='End Date'
 						value={endDate}
 						onChange={(newValue: Dayjs | null) => setEndDate(newValue)}
 						views={['year', 'month', 'day', 'hours', 'minutes', 'seconds']}
+						disabled={realTime}
 					/>
 				</LocalizationProvider>
 			</Box>
