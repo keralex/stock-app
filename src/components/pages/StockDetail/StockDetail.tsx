@@ -19,6 +19,7 @@ import {
 	Select,
 	Typography,
 } from '@mui/material';
+import ErrorPage from '../ErrorPage';
 
 const StockDetail: React.FC = () => {
 	const dateFormat = 'YYYY-MM-DD HH:mm:ss';
@@ -38,6 +39,10 @@ const StockDetail: React.FC = () => {
 		end_date: endDate?.format(dateFormat),
 		realTime,
 	});
+	console.log(error);
+	if (error) {
+		return <ErrorPage />;
+	}
 
 	return (
 		<PageLayout>

@@ -21,13 +21,14 @@ const fetchStockDetail = async ({ symbol, interval, start_date, end_date }: Fetc
     };
 
     const response = await fetch(`https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}${getDateParams()}`);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const result = await response.json();
 
-    if (result) {
-        return result;
-    } else {
-        throw new Error('No data found');
-    }
+    return result;
 };
 
 const getIntervalMs = (interval: string) => {
@@ -45,7 +46,10 @@ const getIntervalMs = (interval: string) => {
 
 const useFetchStockDetail = (params: FetchStockDetailParams) => {
     return useQuery<StockDetail, Error>({
-        queryKey: ['stockDetail', params], queryFn: () => fetchStockDetail(params), refetchInterval: params.realTime ? getIntervalMs(params.interval) : false
+        queryKey: ['stockDetail', params],
+        queryFn: () => fetchStockDetail(params),
+        refetchInterval: params.realTime ? getIntervalMs(params.interval) : false,
+        retry: false,
     });
 
 }

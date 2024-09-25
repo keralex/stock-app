@@ -2,14 +2,15 @@ import { StockListItem } from '../../types/StocksTypes';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchStocks = async (): Promise<StockListItem[]> => {
-    const response = await fetch('https://api.twelvedata.com/stocks?source=docs&exchange=NYSE');
+    const response = await fetch('https://api.twelvedata.com/stocks?source=docs&exchange=JPX');
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const result = await response.json();
 
-    if (result.data && Array.isArray(result.data)) {
-        return result.data;
-    } else {
-        throw new Error('No data found');
-    }
+    return result.data;
 };
 
 const useFetchStocks = () => {
