@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { StockValue } from '../../../types/StocksTypes';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
@@ -12,6 +12,7 @@ interface StockChartProps {
 
 const StockChart: React.FC<StockChartProps> = ({ data, symbol, chartType }) => {
 	const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
+	const theme = useTheme();
 	const options: Highcharts.Options = {
 		navigator: {
 			enabled: false,
@@ -35,6 +36,8 @@ const StockChart: React.FC<StockChartProps> = ({ data, symbol, chartType }) => {
 					parseFloat(value.low),
 					parseFloat(value.close),
 				]),
+				color: chartType === 'line' ? theme.palette.secondary.main : theme.palette.primary.main,
+				upColor: chartType === 'candlestick' ? theme.palette.secondary.main : undefined,
 			},
 		],
 	};
