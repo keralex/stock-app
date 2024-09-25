@@ -21,7 +21,7 @@
 3. **Specify the API Key:**
   Add your Twelve Data API key to the `.env` file:
   ```plaintext
-  VITE_API_KEY=your_api_key_here
+  VITE_API_KEY='your_api_key_here'
   ```
 
 4. **Install Dependencies:**
